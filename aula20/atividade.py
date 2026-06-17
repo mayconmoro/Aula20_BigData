@@ -130,6 +130,7 @@ try:
         print(df_extremo_inferior.sort_values(by= 'estelionato', ascending=True))
         
     df_extremo_superior = df_estelionato[df_estelionato['estelionato'] > limite_superior]
+    df_extremo_superior = df_extremo_superior.to_string(index=False)
     
     # Visualizaçãod dos periodos
     # print(df_menor_qtd_estelionato)
@@ -141,29 +142,29 @@ except Exception as e:
     print(f'Erro ao encontrar as informações: {e}')
 
 # Resumo das informações solicitadas
-print(75*"=")
+print(200*"=")
 print('Relatório de Casos de Estelionato no Estado do Rio de Janeiro - 2003 a 2026(atual):')
-print(75*"=")
+print(200*"=")
 
 print(f'Foram observados um total de {total_estelionato} casos durante o período analisado')
 print(f'O Período com menor índice de estelionatos teve, {menor_mes_estelionato} casos e refere-se ao mês {df_menor_mes_estelionato['mes_ano'].values[0]}')
 print(f'O Período com maior índice de estelionatos teve, {maior_mes_estelionato} casos e refere-se ao mês {df_maior_mes_estelionato['mes_ano'].values[0]}')
-print(75*"=")
-print(f'Não há um padrão nos dados analisados, a quantidade de casos tem variação acentuada em dirversos meses')
-print(f'A Média de casos é de {media_estelionato:.2f},\nsendo que 50% dos períodos analisados correspondem a {mediana_estelionato:.2f} casos,\ndemonstrando que os números sofreram influência de períodos com quantidade de casos muito acima do considerao padrão')
-print(75*"=")
-print(f'Existe uma alta dispersão entre os valores, tendencia de não ter um padrão nos dados analisados')
-
+print(200*"=")
+print(f'Os registros de estelionato apresentam elevada variabilidade ao longo do período analisado.')
+print(f'A diferença entre média {media_estelionato:.2f} e mediana {mediana_estelionato:.2f} sugere que determinados meses concentraram quantidades significativamente superiores de ocorrências, influenciando a média geral.')
+print(200*"=")
 print('\nMeses com valores anormais: ')
-print(75 * '=')
-print(df_extremo_superior.sort_values(by='estelionato', ascending=False))
+print(f'\nForam identificados períodos com comportamento atípico (outliers), indicando meses que merecem investigação específica para compreender fatores que contribuíram para o aumento dos registros.')
+print(200 * '=')
+print(f'Observam-se oscilações relevantes entre os meses, indicando que a ocorrência de estelionatos sofre influência de fatores temporais que merecem investigação adicional.')
+print(df_extremo_superior)
 
 try:
     print('\nVisualização dos dados...')
-    plt.figure(figsize=(18,8))
-    plt.subplots(2, 1)
+    #plt.figure(figsize=(18,8))
+    plt.subplots(2, 2, figsize=(16,7))
 
-    plt.subplot(2, 1, 1)
+    plt.subplot(2, 2, 1)
     plt.boxplot(array_estelionato, vert=False, showmeans=True) # aparecer a média
     
     plt.subplot(2, 1, 2)
@@ -177,5 +178,5 @@ try:
     plt.show()
 
 except Exception as e:
-    print(f'Erro ao visualizaro os dados: {e}')
+    print(f'Erro ao visualizar os dados: {e}')
     exit()
