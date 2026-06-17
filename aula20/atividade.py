@@ -162,18 +162,33 @@ print(df_extremo_superior)
 try:
     print('\nVisualização dos dados...')
     #plt.figure(figsize=(18,8))
-    plt.subplots(2, 2, figsize=(16,7))
+    plt.subplots(2, 2, figsize=(18, 10))
 
+    # POSIÇÃO 1 => BOXPLOT
     plt.subplot(2, 2, 1)
-    plt.boxplot(array_estelionato, vert=False, showmeans=True) # aparecer a média
+    plt.boxplot(array_estelionato, vert=False, showmeans=True) #showfliers=False = remove os outliers, não é uma boa prática ou se utilizar, demonstrar em um grafico auxiliar
+    plt.title('Boxplot da Distribuição')
     
-    plt.subplot(2, 1, 2)
-    plt.text(0.1, 0.9, f'Média: {media_estelionato:.2f}')
-    plt.text(0.1, 0.8, f'Mediana: {mediana_estelionato:.2f}')
-    plt.text(0.1, 0.7, f'Distância: {distancia_media_mediana:.2f}')
-    plt.text(0.1, 0.6, f'Amplitude: {amplitude:.2f}')
-    plt.text(0.1, 0.5, f'Menor mês: {menor_mes_estelionato:.2f}')
-    plt.text(0.1, 0.4, f'Maior mês: {maior_mes_estelionato:.2f}')
+    # POSIÇÃO 2 => MEDIDAS
+    plt.subplot(2, 2, 2)
+    plt.text(0.1, 0.9, f'Média: {media_estelionato:.2f}')    
+    plt.text(0.1, 0.8, f'Distância: {distancia_media_mediana:.2f}')        
+    plt.text(0.1, 0.7, f'Limite Inferior: {limite_inferior:.2f}')
+    plt.text(0.1, 0.6, f'Menor mês: {menor_mes_estelionato:.2f}')  
+    plt.text(0.1, 0.5, f'Quartil Inferior: {quartil_inferior:.2f}')
+    plt.text(0.1, 0.4, f'Mediana: {mediana_estelionato:.2f}')
+    plt.text(0.1, 0.3, f'Quartil Superior: {quartil_superior:.2f}')
+    plt.text(0.1, 0.2, f'Limite Superior: {limite_superior:.2f}')
+    plt.text(0.1, 0.1, f'Maior mês: {maior_mes_estelionato:.2f}')
+    plt.text(0.1, 0.0, f'Amplitude: {amplitude:.2f}')
+
+
+    # POSIÇÃO 3 => 
+    plt.subplot(2, 2, 3) # terceiro grafico
+
+    plt.axis('off')
+    plt.title('Resumo Estatístico')
+
 
     plt.show()
 
